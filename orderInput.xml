@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shiporder orderid="12346">
+    <orderperson>Lina Andersson</orderperson>
+    <shipto>
+        <name>Lina's order</name>
+        <address>Stockgatan 5</address>
+        <city>Halmstad</city>
+        <country>Halmstad county</country>
+    </shipto>
+    <item>
+        <title>Gloves</title>
+        <note>finest quality</note>
+        <quantity>1</quantity>
+        <price>50078.5</price>
+    </item>
+</shiporder>
