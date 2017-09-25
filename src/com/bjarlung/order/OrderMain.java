@@ -11,17 +11,19 @@ public class OrderMain {
 
 	public static void main(String[] args) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-		
-		
+			
 		Shiporder shiporder = setUpShiporder();
 		
 		Marshaller marshaller = jaxbContext.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(shiporder, System.out);
+		
+		//TODO create new objects from XML-file, unmarshalling. Print to console, toString 
 	}
 
-	private static Shiporder setUpShiporder() {
-		
+	//TODO optimize
+	private static Shiporder setUpShiporder() {	
+
 		Shiporder.Item item = new Shiporder.Item();
 		item.setNote("Book");
 		item.setPrice(new BigDecimal("349.5"));
@@ -32,15 +34,13 @@ public class OrderMain {
 		shipTo.setAddress("Gårdsvägen 3");
 		shipTo.setCity("Stockholm");
 		shipTo.setCountry("Stockholms län");
-		shipTo.setName("Villa björnskär");
-		
+		shipTo.setName("Villa björnskär");		
 		
 		Shiporder order = new Shiporder();
 		order.setOrderid("12345");
 		order.setOrderperson("Janne Andersson");
 		order.setShipto(shipTo);
-		order.getItem().add(item);
-		
+		order.getItem().add(item);	
 		
 		return order;
 	}
