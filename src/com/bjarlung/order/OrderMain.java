@@ -1,11 +1,14 @@
 package com.bjarlung.order;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
 
 public class OrderMain {
 
@@ -18,7 +21,12 @@ public class OrderMain {
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(shiporder, System.out);
 		
-		//TODO create new objects from XML-file, unmarshalling. Print to console, toString 
+		
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		Shiporder order1= (Shiporder) unmarshaller.unmarshal(new File("orderInput.xml"));
+		//TODO toString 
+		System.out.println("___________________________________________________");
+		System.out.println(order1.getOrderperson());
 	}
 
 	//TODO optimize
