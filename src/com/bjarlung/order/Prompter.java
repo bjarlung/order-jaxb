@@ -44,6 +44,7 @@ public class Prompter {
 		}
 
 		Shiporder order = setUpOrder(Integer.parseInt(input));
+		System.out.println(System.getProperty("line.separator"));
 		return order;
 	}
 
