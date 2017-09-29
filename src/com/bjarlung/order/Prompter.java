@@ -107,6 +107,18 @@ public class Prompter {
 		}
 		return isInt;
 	}
+	/**
+	 * Prompt user wheather they want to order something (else).
+	 * @return boolean
+	 */ 
+	public boolean promptToPlaceOrder() {
+		System.out.println("Would you like to place an order? \n 'Yes' to order \n 'No' to see order");
+		String input =scanner.nextLine();
+		if(input.equals("Yes"))
+			return true;
+		else
+			return false;				
+	}
 
 }
 

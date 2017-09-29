@@ -43,7 +43,9 @@ public class OrderMain {
 	private static List<Shiporder> getPromptList() {
 		Prompter prompter = new Prompter();
 		List<Shiporder> promptedList = new ArrayList<>();
-		promptedList.add(prompter.promptToOrder());	
+		while(prompter.promptToPlaceOrder()) {		
+			promptedList.add(prompter.promptToOrder());	
+		}
 		return promptedList;
 	}
 
