@@ -90,7 +90,7 @@ public class Shiporder {
 
 
     /**
-     * Sets values to all instance variables
+     * Sets values to all instance variables, except for the item list.
      * @author Beatrice
      * 
      * @param orderperson
