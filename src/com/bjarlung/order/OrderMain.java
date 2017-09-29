@@ -1,77 +1,59 @@
 package com.bjarlung.order;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 /**
- * Main class with main method.
+ * Main class with main method
  * 
  * @author Beatrice
  *
  */
 public class OrderMain {
 
-	private static JAXBContext jaxbContext;
+	private static XmlConverter xmlConverter;
 
 	/**
 	 * main method for order.
-	 * Instantiates JAXBContext variable and calls methods marshal and unmarshal.
+	 * Instantiates XmlConverter variable and calls methods marshal and unmarshal.
+	 * 
 	 * @param args
 	 * @throws JAXBException
 	 */
 	public static void main(String[] args) throws JAXBException{
 
-		jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-
-		List<Shiporder> shiporderList = setUpShiporders();
+		xmlConverter = new XmlConverter();
 
 		//Marshalling the Shiporder objects into XML
-		marshal(shiporderList);
+		List<Shiporder> shiporderList = setUpShiporderExample();
+		xmlConverter.marshal(shiporderList);
 
 		//Unmarshalling XML-file 
-		unmarshal("orderInput.xml");
+		xmlConverter.unmarshal("orderInput.xml");
 
+		//Getting user input and marshalling to XML
+		xmlConverter.marshal(getPromptList());		
 	}
-	/**
-	 * Instantiates unmarshaller.
-	 * Unmarshalling referenced file to a Shiporder object containing Item and Shipto objects.
-	 * @param fileAsString file path
-	 * @throws JAXBException
-	 */
-	private static void unmarshal(String fileAsString) throws JAXBException {	
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		Shiporder order = (Shiporder) unmarshaller.unmarshal(new File(fileAsString));
-		System.out.println(order.toString());
 
-	}
 	/**
-	 * Instantiates marshaller.
-	 * Marshals the referenced list of Shiporders to XML and prints them to the console.
-	 * @param shiporderList
-	 * @throws JAXBException
+	 * Creates Prompter-object. Calls to prompt user for input.
+	 * @return List<Shiporder>
 	 */
-	private static void marshal(List<Shiporder> shiporderList) throws JAXBException {
-		for(Shiporder shiporder: shiporderList) {
-			System.out.println("Shiporder for: " + shiporder.orderperson);
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(shiporder, System.out);
-			System.out.println(System.getProperty("line.separator"));
-		}
+	private static List<Shiporder> getPromptList() {
+		Prompter prompter = new Prompter();
+		List<Shiporder> promptedList = new ArrayList<>();
+		promptedList.add(prompter.promptToOrder());	
+		return promptedList;
 	}
+
 
 	/**
 	 * Instantiation and providing values for Item, Shipto and Shiporder.
-	 * Temporary hard coded objects. To be replaced by prompter or user interface.
+	 * Temporary hard coded objects, to be replaced by user interface.
 	 * @return order List<Shiporder>
 	 */
-	private static List<Shiporder> setUpShiporders() {
+	private static List<Shiporder> setUpShiporderExample() {
 
 		List<Shiporder> orderList = new ArrayList<>();
 		ObjectFactory objectFactory = new ObjectFactory();
