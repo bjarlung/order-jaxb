@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <shiporder orderid="12346">
-    <orderperson>Lina Andersson</orderperson>
+    <orderperson>Sad Lisa</orderperson>
     <shipto>
-        <name>Lina's order</name>
-        <address>Stockgatan 5</address>
-        <city>Halmstad</city>
-        <country>Halmstad county</country>
+        <name>Great Hall of Fame</name>
+        <address>Sesame Street 53</address>
+        <city>City of Dreams</city>
+        <country>Far Far Away</country>
     </shipto>
     <item>
         <title>Gloves</title>

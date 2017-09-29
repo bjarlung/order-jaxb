@@ -76,6 +76,7 @@ import javax.xml.bind.annotation.XmlType;
     "item"
 })
 @XmlRootElement(name = "shiporder")
+
 public class Shiporder {
 
     @XmlElement(required = true)
@@ -87,6 +88,36 @@ public class Shiporder {
     @XmlAttribute(name = "orderid", required = true)
     protected String orderid;
 
+
+    /**
+     * Sets values to all instance variables, except for the item list.
+     * @author Beatrice
+     * 
+     * @param orderperson
+     * @param shipto
+     * @param orderid
+     */
+    public void setAll(String orderperson, Shiporder.Shipto shipto, String orderid) {
+    	this.orderperson = orderperson;
+    	this.shipto = shipto;
+    	this.orderid = orderid;
+    }
+    
+    /**
+     * Overriding toString method
+     * @author Beatrice
+     */
+    @Override
+    public String toString() {
+    	String output = "Orderperson: " + orderperson + " Orderid: " + orderid + "\n"; 
+    	for(Shiporder.Item item: item) {
+    		output += item.toString();
+    	}
+    	output += shipto.toString();
+		return output;
+    }
+    
+    
     /**
      * Gets the value of the orderperson property.
      * 
@@ -97,7 +128,7 @@ public class Shiporder {
      */
     public String getOrderperson() {
         return orderperson;
-    }
+    }  
 
     /**
      * Sets the value of the orderperson property.
@@ -229,6 +260,33 @@ public class Shiporder {
         @XmlElement(required = true)
         protected BigDecimal price;
 
+        /**
+         * Sets values to all instance variables
+         * @author Beatrice
+         * 
+         * @param title
+         * @param note
+         * @param quantityAsInt
+         * @param priceAsdouble
+         */
+        public void setAll(String title, String note, int quantityAsInt, double priceAsdouble) {
+        	this.title = title;
+        	this.note = note;
+        	this.quantity = new BigInteger(Integer.toString(quantityAsInt));
+        	this.price = new BigDecimal(Double.toString(priceAsdouble));
+        }
+        
+        /**
+         * Overriding toString method 
+         * @author Beatrice
+         */
+        @Override
+        public String toString() {
+        	String output = "Ordered item(s): " + quantity + " " + title + " (note: " + note + ") Price: " + price + "\n";
+        	return output;      	
+        }
+        
+        
         /**
          * Gets the value of the title property.
          * 
@@ -368,6 +426,33 @@ public class Shiporder {
         @XmlElement(required = true)
         protected String country;
 
+        /**
+         * Sets values to all instance variables
+         * @author Beatrice
+         * 
+         * @param name
+         * @param address
+         * @param city
+         * @param country
+         */
+        public void setAll(String name, String address, String city, String country) {
+        	this.name = name;
+        	this.address = address;
+        	this.city = city;
+        	this.country = country;
+        }
+        
+        /**
+         * Overriding toString method 
+         * @author Beatrice
+         */
+        @Override
+        public String toString() {
+        	String output = name + "\n" + address + "\n" + city + ", " + country;
+        	return output;
+        }
+        
+        
         /**
          * Gets the value of the name property.
          * 
